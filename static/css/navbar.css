@@ -6,3 +6,31 @@
     margin-left: 5rem;
     color: red !important;
 }
+.form-card {
+    max-width: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+.form-input {
+    max-width: 270px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.btn-block {
+    margin-left: auto;
+    margin-right: auto;
+    width: 270px;
+}
+.list-group-flush {
+    margin-right: auto;
+    margin-left: auto;
+    border: 1px solid lightgrey;
+    max-width: 350px;
+    margin-top: 0.9rem;
+}
+.list-group-item {
+    margin: 1rem;
+}
