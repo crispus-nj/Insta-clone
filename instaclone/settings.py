@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'instagram'
+    'instagram',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.UserAccount'
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +88,6 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'instagram.UserAccount'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
