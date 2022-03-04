@@ -1,38 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap");
+
 #navbar {
-    margin-left: 2rem;
-    margin-right: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
-#navbarUl{
-    margin-left: 5rem;
-    color: red !important;
+#navbarUl {
+  margin-left: 5rem;
+  color: red !important;
+}
+.instagram-1{
+    font-family: "Calligraffitti", cursive;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+.instagram {
+  font-family: "Calligraffitti", cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
 }
 /* login / register styles */
 .form-card {
-    max-width: 350px;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 3rem;
-    margin-bottom: 0;
-    padding-bottom: 0;
+  max-width: 350px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 3rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 .form-input {
-    max-width: 270px;
-    margin-right: auto;
-    margin-left: auto;
+  max-width: 270px;
+  margin-right: auto;
+  margin-left: auto;
 }
 .btn-block {
-    margin-left: auto;
-    margin-right: auto;
-    width: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 270px;
 }
 .list-group-flush {
-    margin-right: auto;
-    margin-left: auto;
-    border: 1px solid lightgrey;
-    max-width: 350px;
-    margin-top: 0.9rem;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid lightgrey;
+  max-width: 350px;
+  margin-top: 0.9rem;
 }
 .list-group-item {
-    margin: 1rem;
+  margin: 1rem;
 }
 /* end styles */
