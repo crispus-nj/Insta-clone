@@ -1,0 +1,8 @@
+#navbar {
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+#navbarUl{
+    margin-left: 5rem;
+    color: red !important;
+}
