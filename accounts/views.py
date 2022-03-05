@@ -12,8 +12,21 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
+from django.contrib.auth import authenticate, login, logout
 
 def login_user(request):
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        user = authenticate(request, email = email, password = password)
+
+        if user is not None:
+            login(request, user)
+            messages.success(request, user.email +' logged in successfull!')
+            return redirect('home')
+
     return render(request, 'accounts/login.html')
 
 
@@ -73,3 +86,7 @@ def activate_account(request, uid, token):
     else:
         messages.error(request, 'Invalid activation link!')
         return redirect('register')
+    
+def logout_user(request):
+    logout(request)
+    return redirect('login')
