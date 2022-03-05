@@ -1,6 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'includes/alerts.html'%}
+<div class="row">
+    <div class="col-md-3">
 
-<h1>Homepage</h1>
+    </div>
+    <div class="col-md-5 mt-3">
+        {% for post in post %}
+        <div class="card">
+         <p class="mb-2">{{post.user.username}}</p>
+            <img src="{{post.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">{{post.description}}</p>
+            </div>
+            {% for comment in comment%}
+                <!-- {{comment.user.username}} -->
+                {{comment.body}}
+            {% endfor %}
+            <div class="form">
+                <form action="" style="padding-left: 20px;padding-right: 15px;padding-top: 5px;">
+                    <input type="text" name="comment" id="comment" class="form-control" placeholder="Add a comment..." />
+                    <a href="" type="submit">Post</a>
+                </form>
+            </div>   
+          </div>
+        {% endfor %}
+
+    </div>
+    <div class="col-md-4">
+        
+    </div>
+</div>
+    
 {% endblock %}
