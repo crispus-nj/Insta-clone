@@ -1,3 +1,4 @@
+from locale import normalize
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 # Create your models here.
@@ -5,7 +6,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 class Account(BaseUserManager):
     def create_user(self, email, username, fullname, password=None):
         user = self.model(
-            email = email,
+            email = self.normalize_email(email),
             username = username,
             fullname = fullname
         )
@@ -15,7 +16,7 @@ class Account(BaseUserManager):
         return user
     def create_superuser(self, email, username, fullname, password):
         user = self.create_user(
-            email = email,
+            email =self.normalize_email(email),
             username = username,
             fullname = fullname,
             password = password
