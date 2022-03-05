@@ -11,7 +11,7 @@
 .instagram-1{
     font-family: "Calligraffitti", cursive;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.5;
 }
 .instagram {
   font-family: "Calligraffitti", cursive;
@@ -48,3 +48,21 @@
   margin: 1rem;
 }
 /* end styles */
+
+/* landing page styles  */
+.avatar-home {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+
+}
+.rounded-circle {
+  height: 50px;
+  width: 50px;
+}
+.username {
+  margin-left: 0.5rem;
+}
