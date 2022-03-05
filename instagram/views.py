@@ -7,8 +7,9 @@ from .models import Comment, Post
 @login_required(login_url='login')
 def home(request):
     post = Post.objects.all().order_by('-date_posted')
-    # comment = Comment.objects.all()
-    context = {'post': post}
+    post_comments = Comment.objects.all()
+    # post_comments = post.comment_set.all()
+    context = {'post': post, 'post_comments': post_comments}
     return render(request, 'instagram/index.html', context)
 
 @login_required(login_url='login')
