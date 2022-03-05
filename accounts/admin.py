@@ -9,6 +9,7 @@ class StyleUserAccount(UserAdmin):
     list_filter = ()
     filter_horizontal = ()
     fieldsets = ()
+    ordering = ('-last_login', )
     
 
 admin.site.register(UserAccount, StyleUserAccount)
