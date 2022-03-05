@@ -3,7 +3,7 @@ from accounts.models import UserAccount
 
 
 class Post(models.Model):
-    user = models.ForeignKey(UserAccount, on_delete=models.SET_NULL, null=True)
+    host = models.ForeignKey(UserAccount, on_delete=models.SET_NULL, null=True)
     image = models.ImageField()
     description = models.CharField(max_length=100)
     date_posted = models.DateTimeField(auto_now_add=True)
