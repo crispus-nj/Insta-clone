@@ -6,15 +6,23 @@ from .forms import PostForm
 
 @login_required(login_url='login')
 def home(request):
-    post = Post.objects.all()
+    post = Post.objects.all().order_by('-date_posted')
     comment = Comment.objects.all()
     context = {'post': post, 'comment': comment}
     return render(request, 'instagram/index.html', context)
 
+@login_required(login_url='login')
 def create_post(request):
-
     if request.method == 'POST':
-        form = PostForm(request.POST)
+       image = request.FILES.get('image')
+       description = request.POST.get('description')
+
+       post = Post.objects.create(
+           user = request.user,
+           image = image,
+           description = description
+       )
+       post.save()
     form = PostForm()
     context = {'form': form}
     

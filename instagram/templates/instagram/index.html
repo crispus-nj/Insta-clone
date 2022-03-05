@@ -7,13 +7,13 @@
     </div>
     <div class="col-md-5 mt-3">
         {% for post in post %}
-        <div class="card">
+        <div class="card mt-4">
          <p class="mb-2">{{post.user.username}}</p>
             <img src="{{post.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
               <p class="card-text">{{post.description}}</p>
             </div>
-            {% for comment in comment%}
+            {% for comment in post.comment%}
                 <!-- {{comment.user.username}} -->
                 {{comment.body}}
             {% endfor %}
