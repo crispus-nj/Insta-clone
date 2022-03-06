@@ -32,7 +32,9 @@ class UserAccount(AbstractBaseUser):
     email = models.EmailField(max_length=100, unique=True)
     username = models.CharField(max_length=50, unique=True)
     fullname = models.CharField(max_length=100)
-
+    # avatar = models.ImageField(null=True, default='avatar.svg')
+    # bio = models.TextField()
+    # followers = models.CharField
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'fullname']
     objects = Account()

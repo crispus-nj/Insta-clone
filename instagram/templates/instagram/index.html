@@ -5,7 +5,7 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-5 mt-3">
+    <div class="col-md-6 mt-3">
         {% for post in post %}
         <div class="card mt-4">
             <div class="avatar-home">
@@ -21,10 +21,27 @@
             <div class="card-body">
               <p class="card-text">{{post.description}}</p>
             </div>
+            <div class="card" style="padding-left: 20px;padding-right: 15px;padding-top: 5px;">
+                <h5>COMMENTS</h5>
             {% for comment in post.comments.all %}
-            {{comment.body}}
-            {{comment.user.username}}
+                <div class="comments avatar-home">
+                    <div class="image-profile ms-2">
+                        <img src="{{post.image.url}}" alt="profile picture" class="rounded-circle">
+                    </div>
+                    <div class="username ms-2">
+                        <p>@:<a href="">{{comment.user.username}}</a></p>
+                    </div>
+                    <div class="post ms-2">
+                        <p>{{comment.body}}</p>
+                    </div>
+                    <div class="time_posted ms-auto d-flex justify-content-center align-items-center">
+                        <small class="text-muted">Posted {{comment.date_posted|timesince}} ago</small>
+                    </div>
+                </div>
+                
             {% endfor %}
+        </div>
+
             <div class="form">
                 <form action="{% url 'comments' post.id %}" method="POST" style="padding-left: 20px;padding-right: 15px;padding-top: 5px;">
                     {% csrf_token %}
