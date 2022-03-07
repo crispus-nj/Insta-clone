@@ -13,7 +13,7 @@
                     <img src="{{request.user.avatar.url}}" alt="profile picture" class="rounded-circle">
                 </div>
                 <div class="username" style="margin-bottom: -0.9rem;">
-                    <p><a href="" style="text-decoration: none;">{{post.host.username}}</a></p>
+                    <p><a href="{% url 'profile' post.host.id %}" style="text-decoration: none;">{{post.host.username}}</a></p>
                 </div>
             </div>
             <hr>
@@ -34,7 +34,7 @@
                             <img src="{{request.user.avatar.url}}" alt="profile picture" class="rounded-circle">
                         </div>
                         <div class="username ms-2">
-                            <p>@:<a href="">{{comment.user.username}}</a></p>
+                            <p>@:<a href="{% url 'profile' comment.user.id %}">{{comment.user.username}}</a></p>
                         </div>
                         <div class="post ms-2">
                             <p>{{comment.body}}</p>
