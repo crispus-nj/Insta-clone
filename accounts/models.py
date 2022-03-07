@@ -57,3 +57,6 @@ class UserAccount(AbstractBaseUser):
 
     def has_perm(self, perm, obj=None):
         return True
+
+class Profile(models.Model):
+    pass
