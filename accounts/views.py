@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserForm
 from .models import UserAccount
 from django.contrib import messages
 from django.template.loader import render_to_string
+from django.contrib.auth.decorators import login_required
 
 # account verification
 from django.core.mail import EmailMessage
@@ -84,12 +85,20 @@ def activate_account(request, uid, token):
     else:
         messages.error(request, 'Invalid activation link!')
         return redirect('register')
-    
+
+
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     return redirect('login')
 
-
+@login_required(login_url='login')
 def profile(request):
+    # user = UserAccount.objects.get()
     posts = Post.objects.all()
-    return render(request, 'accounts/profile.html', {'posts': posts})
+    context = {'posts': posts}
+    return render(request, 'accounts/profile.html', context )
+
+@login_required(login_url='login')
+def edit_profile(request):
+    return render(request, 'accounts/edit_profile.html')

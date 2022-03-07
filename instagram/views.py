@@ -1,19 +1,20 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+from accounts.models import UserAccount
 from .models import Comment, Post
 
 @login_required(login_url='login')
 def home(request):
+    user = UserAccount.objects.all()
     post = Post.objects.all().order_by('-date_posted')
     post_comments = Comment.objects.all()
-    # post_comments = post.comment_set.all()
-    context = {'post': post, 'post_comments': post_comments}
+    context = {'post': post, 'post_comments': post_comments, 'user': user}
     return render(request, 'instagram/index.html', context)
 
 @login_required(login_url='login')
 def create_post(request):
+    user = UserAccount.objects.all()
     if request.method == 'POST':
         image = request.FILES.get('image')
         description = request.POST.get('description')
@@ -25,10 +26,11 @@ def create_post(request):
         )
         post.save()
         return redirect('home')
-    return render(request, 'instagram/create_post.html')
+    return render(request, 'instagram/create_post.html', {'user': user})
 
 @login_required(login_url='login')
 def post_comment(request, post_id):
+    user = UserAccount.objects.all()
     post = Post.objects.get(pk = post_id)
     if request.method == 'POST':
         comment = request.POST.get('comment')
@@ -45,5 +47,5 @@ def post_comment(request, post_id):
             return redirect('home')
     else: 
         print("invalid data")
-    return render(request, 'instagram/index.html')
+    return render(request, 'instagram/index.html', {'user': user})
 

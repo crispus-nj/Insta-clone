@@ -13,7 +13,7 @@
                     <img src="{{post.image.url}}" alt="profile picture" class="rounded-circle">
                 </div>
                 <div class="username">
-                    <p>{{post.host.username}}</p>
+                    <p><a href="">{{post.host.username}}</a></p>
                 </div>
             </div>
             <hr>
@@ -62,11 +62,10 @@
 
             <div class="form">
                 <form action="{% url 'comments' post.id %}" method="POST"
-                    style="padding-left: 20px;padding-right: 15px;padding-top: 5px;">
+                    style="padding-left: 20px;padding-right: 15px;padding-top: 5px; margin-bottom: 0.5rem">
                     {% csrf_token %}
-                    <input type="text" name="comment" id="comment" class="form-control"
+                    <input type="text" name="comment" id="comment" class="form-control "
                         placeholder="Add a comment..." />
-                    <a href="" type="submit">Post</a>
                 </form>
             </div>
         </div>
