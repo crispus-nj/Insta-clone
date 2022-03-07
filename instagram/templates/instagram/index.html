@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-6 mt-3">
         {% for post in post %}
-        <div class="card mt-4">
+        <div class="card mt-4 mb-5">
             <div class="avatar-home">
                 <div class="image-profile">
                     <img src="{{post.image.url}}" alt="profile picture" class="rounded-circle">
@@ -20,6 +20,9 @@
             <img src="{{post.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <p class="card-text">{{post.description}}</p>
+                <span class="material-icons-outlined">
+                    favorite
+                    </span>
             </div>
 
             <div class="collapse" id="comments-{{post.id}}">

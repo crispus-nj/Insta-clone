@@ -1,5 +1,3 @@
-import os
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 from .models import UserAccount
@@ -13,6 +11,8 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import authenticate, login, logout
+
+from instagram.models import Post
 
 def login_user(request):
 
@@ -55,8 +55,6 @@ def register(request):
                 'uid': urlsafe_base64_encode(force_bytes(user.pk))
             })
 
-            echo = os.environ.get('EMAIL_HOST_PASSWORD')
-            print(echo)
             user.save()
             receipient_email = email
             send_mail = EmailMessage(message_subject, message ,to=[receipient_email])
@@ -90,3 +88,8 @@ def activate_account(request, uid, token):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+def profile(request):
+    posts = Post.objects.all()
+    return render(request, 'accounts/profile.html', {'posts': posts})
