@@ -93,10 +93,12 @@ def logout_user(request):
     return redirect('login')
 
 @login_required(login_url='login')
-def profile(request):
+def profile(request, pk):
     # user = UserAccount.objects.get()
-    posts = Post.objects.all()
-    context = {'posts': posts}
+    user = UserAccount.objects.get(id=pk)
+    posts = user.post_set.all()
+    # posts = Post.objects.all()
+    context = {'posts': posts, 'user': user}
     return render(request, 'accounts/profile.html', context )
 
 @login_required(login_url='login')

@@ -7,10 +7,14 @@
         <img src="" alt="profile pic" class="rounded-circle">
     </div>
     <div class="pt-2 col-sm col-9 me-3">
-        <h5 class="fw-bold text-capitalize mb-0 text-md-start">{{request.user.fullname}}</h5>
+        <div class="d-flex justify-flex-start align-items-center">
+            <h5 class="fw-bold text-capitalize mb-0 text-md-start">{{request.user.fullname}}</h5>
+            <button class="btn btn-sm btn-secondary" style="margin-left: 0.7rem;">Edit Profile</button>
+        </div>
+        
         <div class="d-flex pt-2">
             <div class="me-3">
-                <span class="fw-bold">79</span> posts
+                <span class="fw-bold">{{user.post_set.all.count}}</span> post
             </div>
             <div class="me-3">
                 <span class="fw-bold">79</span> following

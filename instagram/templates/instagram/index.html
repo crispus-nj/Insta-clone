@@ -19,10 +19,9 @@
             <hr>
             <img src="{{post.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
+                <i class="far fa-heart"></i>
+                <i class="fa-solid fa-comment-dots"></i>
                 <p class="card-text">{{post.description}}</p>
-                <span class="material-icons-outlined">
-                    favorite
-                    </span>
             </div>
 
             <div class="collapse" id="comments-{{post.id}}">
@@ -49,7 +48,7 @@
                 </div>
             </div>
 
-            <p class="card-text">
+            <p class="card-text" style="margin-left: 0.7rem;">
                 {% if post.comments.all.count > 0%}
                     <a href="#comments-{{post.id}}" role="button" data-bs-toggle="collapse">
                         <button class="btn  btn-outline-secondary btn-sm ">View {{post.comments.all.count}} Comments</button>
