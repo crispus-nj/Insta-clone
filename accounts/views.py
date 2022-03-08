@@ -94,7 +94,8 @@ def logout_user(request):
 
 @login_required(login_url='login')
 def profile(request, pk):
-    current_user = request.user.username
+    current_user = UserAccount.objects.get(id=pk)
+    logged_in_user = request.user.username
     user_followers = len(Followers_Following.objects.filter(user=current_user))
     user_following = len(Followers_Following.objects.filter(follower=current_user))
     user_followers_all = Followers_Following.objects.filter(user = current_user)
@@ -110,14 +111,15 @@ def profile(request, pk):
         follow_button_value = 'follow'
 
     user = UserAccount.objects.get(id=pk)
+
     posts = user.post_set.all()
-    # posts = Post.objects.all()
     context = {
         'posts': posts, 
         'user': user,
         'user_followers': user_followers,
         'user_following': user_following,
-        'follow_button_value': follow_button_value
+        'follow_button_value': follow_button_value,
+        'current_user': current_user,
         }
     return render(request, 'accounts/profile.html', context )
 
@@ -134,28 +136,19 @@ def edit_profile(request):
     context = {'form': form}
     return render(request, 'accounts/edit_profile.html', context)
 
+@login_required(login_url='login')
 def follower_count(request):
     if request.method == 'POST':
-       value = request.POST['value']
-       user = request.POST['user']
-       follower = request.POST['follower']
+       value = request.POST.get('value')
+       user = request.POST.get('user')
+       follower = request.POST.get('follower')
+    #    print(value)
        if value == 'follow':
            followers_cnt = Followers_Following.objects.create(follower=follower, user=user)
            followers_cnt.save()
        else:
            followers_cnt = Followers_Following.objects.get(follower=follower, user=user)
            followers_cnt.delete()
+
        return redirect('/?user=' + user)
 
-# def followers_count(request):
-#     if request.method == 'POST':
-#        value = request.POST['value']
-#        user = request.POST['user']
-#        follower = request.POST['follower']
-#        if value == 'follow':
-#            followers_cnt = FollowersCount.objects.create(follower=follower, user=user)
-#            followers_cnt.save()
-#        else:
-#            followers_cnt = FollowersCount.objects.get(follower=follower, user=user)
-#            followers_cnt.delete()
-#        return redirect('/?user=' + user)
