@@ -7,5 +7,6 @@ urlpatterns = [
     path('activate-account/<uid>/<token>/', views.activate_account, name='activate'),
     path('logout/', views.logout_user, name='logout'),
     path('profile/<int:pk>', views.profile, name='profile'),
-    path('edit-profile/', views.edit_profile, name='edit-profile')
+    path('edit-profile/', views.edit_profile, name='edit-profile'),
+    path('followers_following',views.follower_count, name='followers')
 ]

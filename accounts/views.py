@@ -113,3 +113,6 @@ def edit_profile(request):
 
     context = {'form': form}
     return render(request, 'accounts/edit_profile.html', context)
+
+def follower_count(request):
+    pass
