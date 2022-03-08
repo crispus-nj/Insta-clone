@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, UserForm
-from .models import UserAccount
+from .models import UserAccount, Followers_Following
 from django.contrib import messages
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
@@ -94,11 +94,31 @@ def logout_user(request):
 
 @login_required(login_url='login')
 def profile(request, pk):
-    # user = UserAccount.objects.get()
+    current_user = request.user.username
+    user_followers = len(Followers_Following.objects.filter(user=current_user))
+    user_following = len(Followers_Following.objects.filter(follower=current_user))
+    user_followers_all = Followers_Following.objects.filter(user = current_user)
+    user_followers1 = []
+    for i in user_followers_all:
+        user_followers_all = i.follower
+        user_followers1.append(user_followers_all)
+
+    if current_user in user_followers1:
+        follow_button_value = 'unfollow'
+    else:
+        follow_button_value = 'follow'
+    # userprofile = Userprofile.objects.get(user_id=request.user.id)
+
     user = UserAccount.objects.get(id=pk)
     posts = user.post_set.all()
     # posts = Post.objects.all()
-    context = {'posts': posts, 'user': user}
+    context = {
+        'posts': posts, 
+        'user': user,
+        'user_followers': user_followers,
+        'user_following': user_following,
+        'follow_button_value': follow_button_value
+        }
     return render(request, 'accounts/profile.html', context )
 
 @login_required(login_url='login')
@@ -115,4 +135,14 @@ def edit_profile(request):
     return render(request, 'accounts/edit_profile.html', context)
 
 def follower_count(request):
-    pass
+    if request.method == 'POST':
+       value = request.POST['value']
+       user = request.POST['user']
+       follower = request.POST['follower']
+       if value == 'follow':
+           followers_cnt = Followers_Following.objects.create(follower=follower, user=user)
+           followers_cnt.save()
+       else:
+           followers_cnt = Followers_Following.objects.get(follower=follower, user=user)
+           followers_cnt.delete()
+       return redirect('/?user=' + user)
