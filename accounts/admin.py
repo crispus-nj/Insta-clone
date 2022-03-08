@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import UserAccount
+from .models import UserAccount, Followers_Following
 # Register your models here.
 class StyleUserAccount(UserAdmin):
     list_display = ('username', 'email', 'fullname', 'date_joined', 'last_login', 'is_admin', 'is_active')
@@ -13,3 +13,4 @@ class StyleUserAccount(UserAdmin):
     
 
 admin.site.register(UserAccount, StyleUserAccount)
+admin.site.register(Followers_Following)

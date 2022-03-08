@@ -56,16 +56,9 @@ class UserAccount(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return True
 
-# class UserFollowing(models.Model):
-#     user = models.OneToOneField(UserAccount, on_delete=models.CASCADE, related_name='profile')
-#     private_account = models.BooleanField(default = False)
-#     followers = models.ManyToManyField('self',blank=True,related_name='user_followers',symmetrical=False)
-#     following = models.ManyToManyField('self',blank=True,related_name='user_following',symmetrical=False)
-#     panding_request = models.ManyToManyField('self',blank=True,related_name='pandingRequest',symmetrical=False)
-#     created = models.DateTimeField(auto_now_add=True)
+class Followers_Following(models.Model):
+    follower = models.CharField(max_length=1000)
+    user = models.CharField(max_length=1000)
     
-#     class Meta:
-#         ordering = ["-created"]
-
-#     def __str__(self):
-#         f"{self.user.username} follows {self.followers}"
+    def __str__(self):
+        return self.user
