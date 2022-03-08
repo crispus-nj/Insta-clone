@@ -28,7 +28,10 @@
                     <span class="fw-bold">{{user_followers}}</span> followers
                 </div>
             </div>
+            {% if user.bio is not None %}
             <h5 class=" text-capitalize mb-0 text-md-start">{{user.bio}} </h5>
+            {% else %}
+            {% endif%}
             <h6 class=" text-capitalize mb-0 text-md-start">{{user.username}} </h6>
             <form action="{% url 'followers'%}" method="POST">
                 {% csrf_token %}
