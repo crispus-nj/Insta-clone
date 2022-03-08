@@ -32,6 +32,23 @@ class RegistrationForm(forms.ModelForm):
             raise forms.ValidationError('Password must match!')
         
 class UserForm(forms.ModelForm):
+    fullname = forms.CharField(max_length=200, widget=forms.TextInput(attrs= {
+        'class' : 'form-control form-input',
+    }))
+    username = forms.CharField(max_length=200, widget=forms.TextInput(attrs= {
+        'class' : 'form-control form-input',
+    }))
+    bio = forms.CharField(max_length=200, widget=forms.Textarea(attrs= {
+        'class' : 'form-control form-input',
+        'cols' : 200,
+        'rows': 3,
+        'style': 'width: 100%'
+    }))
+    avatar = forms.ImageField(widget=forms.ClearableFileInput(attrs= {
+        'class' : 'form-control form-input',
+    }))
     class Meta:
         model = UserAccount
         fields = ['fullname', 'username' ,'avatar' ,'bio']
+        
+
