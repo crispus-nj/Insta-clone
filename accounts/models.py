@@ -34,9 +34,7 @@ class UserAccount(AbstractBaseUser):
     fullname = models.CharField(max_length=100)
     
     avatar = models.ImageField(null=True, default='avatar.svg')
-    bio = models.TextField()
-    followers = models.IntegerField(null=True)
-    following = models.IntegerField(null=True)
+    bio = models.TextField(null=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'fullname']
@@ -58,5 +56,16 @@ class UserAccount(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return True
 
-class Profile(models.Model):
-    pass
+# class UserFollowing(models.Model):
+#     user = models.OneToOneField(UserAccount, on_delete=models.CASCADE, related_name='profile')
+#     private_account = models.BooleanField(default = False)
+#     followers = models.ManyToManyField('self',blank=True,related_name='user_followers',symmetrical=False)
+#     following = models.ManyToManyField('self',blank=True,related_name='user_following',symmetrical=False)
+#     panding_request = models.ManyToManyField('self',blank=True,related_name='pandingRequest',symmetrical=False)
+#     created = models.DateTimeField(auto_now_add=True)
+    
+#     class Meta:
+#         ordering = ["-created"]
+
+#     def __str__(self):
+#         f"{self.user.username} follows {self.followers}"

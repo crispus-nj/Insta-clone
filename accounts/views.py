@@ -103,4 +103,13 @@ def profile(request, pk):
 
 @login_required(login_url='login')
 def edit_profile(request):
-    return render(request, 'accounts/edit_profile.html')
+    user = request.user
+    form = UserForm(instance=user)
+    if request.method == 'POST':
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=user.id)
+
+    context = {'form': form}
+    return render(request, 'accounts/edit_profile.html', context)

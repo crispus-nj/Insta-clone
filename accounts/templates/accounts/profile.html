@@ -9,7 +9,7 @@
     <div class="pt-2 col-sm col-9 me-3">
         <div class="d-flex justify-flex-start align-items-center">
             <h5 class="fw-bold text-capitalize mb-0 text-md-start">{{user.fullname}}</h5>
-            <button class="btn btn-sm btn-secondary" style="margin-left: 0.7rem;">Edit Profile</button>
+            <a href="{% url 'edit-profile'%}" class="btn btn-sm btn-secondary" style="margin-left: 0.7rem;">Edit Profile</a>
         </div>
         
         <div class="d-flex pt-2">
@@ -23,8 +23,8 @@
                 <span class="fw-bold">9</span> followers
             </div>
         </div>
-        <h5 class="fw-bold text-capitalize mb-0 text-md-start">Bio: </h5>
-        <h6 class="fw-bold text-capitalize mb-0 text-md-start">{{user.username}} </h6>
+        <h5 class=" text-capitalize mb-0 text-md-start">{{user.bio}} </h5>
+        <h6 class=" text-capitalize mb-0 text-md-start">{{user.username}} </h6>
     <button class="btn-sm btn-primary text-white px-3 btn-sm mt-3">Follow</button>
 
     </div>
