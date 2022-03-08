@@ -99,6 +99,7 @@ def profile(request, pk):
     user_following = len(Followers_Following.objects.filter(follower=current_user))
     user_followers_all = Followers_Following.objects.filter(user = current_user)
     user_followers1 = []
+
     for i in user_followers_all:
         user_followers_all = i.follower
         user_followers1.append(user_followers_all)
@@ -107,7 +108,6 @@ def profile(request, pk):
         follow_button_value = 'unfollow'
     else:
         follow_button_value = 'follow'
-    # userprofile = Userprofile.objects.get(user_id=request.user.id)
 
     user = UserAccount.objects.get(id=pk)
     posts = user.post_set.all()
@@ -146,3 +146,16 @@ def follower_count(request):
            followers_cnt = Followers_Following.objects.get(follower=follower, user=user)
            followers_cnt.delete()
        return redirect('/?user=' + user)
+
+# def followers_count(request):
+#     if request.method == 'POST':
+#        value = request.POST['value']
+#        user = request.POST['user']
+#        follower = request.POST['follower']
+#        if value == 'follow':
+#            followers_cnt = FollowersCount.objects.create(follower=follower, user=user)
+#            followers_cnt.save()
+#        else:
+#            followers_cnt = FollowersCount.objects.get(follower=follower, user=user)
+#            followers_cnt.delete()
+#        return redirect('/?user=' + user)

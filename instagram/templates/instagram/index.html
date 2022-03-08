@@ -10,7 +10,7 @@
         <div class="card mt-4 mb-5">
             <div class="avatar-home">
                 <div class="image-profile">
-                    <img src="{{request.user.avatar.url}}" alt="profile picture" class="rounded-circle">
+                    <img src="{{post.host.avatar.url}}" alt="profile picture" class="rounded-circle" style="height: 70px;width:70px;border-radius: 50%">
                 </div>
                 <div class="username" style="margin-bottom: -0.9rem;">
                     <p><a href="{% url 'profile' post.host.id %}" style="text-decoration: none;">{{post.host.username}}</a></p>
@@ -31,7 +31,7 @@
                     {% for comment in post.comments.all %}
                     <div class="comments avatar-home">
                         <div class="image-profile ms-2">
-                            <img src="{{request.user.avatar.url}}" alt="profile picture" class="rounded-circle">
+                            <img src="{{comment.user.avatar.url}}" alt="profile picture" class="rounded-circle" style="height: 50px;width:50px;border-radius: 50%">
                         </div>
                         <div class="username ms-2">
                             <p>@:<a href="{% url 'profile' comment.user.id %}">{{comment.user.username}}</a></p>

@@ -34,7 +34,7 @@ class UserAccount(AbstractBaseUser):
     fullname = models.CharField(max_length=100)
     
     avatar = models.ImageField(null=True, default='avatar.svg')
-    bio = models.TextField(null=True)
+    bio = models.TextField(null=True, blank=True)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'fullname']
@@ -59,6 +59,6 @@ class UserAccount(AbstractBaseUser):
 class Followers_Following(models.Model):
     follower = models.CharField(max_length=1000)
     user = models.CharField(max_length=1000)
-    
+
     def __str__(self):
         return self.user
