@@ -5,7 +5,7 @@
     <div class="col-md-3">
 
     </div>
-    <div class="col-md-6 mt-3">
+    <div class="col-md-5 mt-3">
         {% for post in post %}
         <div class="card mt-4 mb-5">
             <div class="avatar-home">
@@ -71,8 +71,17 @@
         {% endfor %}
 
     </div>
-    <div class="col-md-4">
-
+    <div class="col-md-3 mt-5">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+              Suggested for you
+            </div>
+            {% for user in user %}
+            <ul class="list-group">
+              <li class="list-group-item">@ <a href="{% url 'profile' user.id%}" style="text-decoration: none;">{{user.username}}</a> <span><a  href="{% url 'profile' user.id%}" class="btn btn-primary btn-sm float-end">Follow</a></span></li>
+            </ul>
+            {% endfor %}
+          </div>
     </div>
 </div>
 

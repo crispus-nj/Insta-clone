@@ -1,12 +1,16 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 from accounts.models import UserAccount
 from .models import Comment, Post
 
 @login_required(login_url='login')
 def home(request):
-    user = UserAccount.objects.all()
+    name = request.GET.get('name') if request.GET.get('name') != None else ''
+
+    user = UserAccount.objects.filter(Q(username__icontains = name))
+    
     post = Post.objects.all().order_by('-date_posted')
     post_comments = Comment.objects.all()
     context = {'post': post, 'post_comments': post_comments, 'user': user}
