@@ -9,7 +9,7 @@ from .models import Comment, Post
 def home(request):
     name = request.GET.get('name') if request.GET.get('name') != None else ''
 
-    user = UserAccount.objects.filter(Q(username__icontains = name))
+    user = UserAccount.objects.filter(Q(username__icontains = name))[0:6]
     
     post = Post.objects.all().order_by('-date_posted')
     post_comments = Comment.objects.all()
