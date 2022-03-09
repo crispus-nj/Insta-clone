@@ -78,7 +78,7 @@
             </div>
             {% for user in user %}
             <ul class="list-group">
-              <li class="list-group-item">@ <a href="{% url 'profile' user.id%}" style="text-decoration: none;">{{user.username}}</a> <span><a  href="{% url 'profile' user.id%}" class="btn btn-primary btn-sm float-end">Follow</a></span></li>
+                {% if request.user.id != user.id %} <li class="list-group-item">@ <a href="{% url 'profile' user.id%}" style="text-decoration: none;">{{user.username}}</a> <span><a  href="{% url 'profile' user.id%}" class="btn btn-primary btn-sm float-end">Follow</a></span></li>{% endif %}
             </ul>
             {% endfor %}
           </div>
