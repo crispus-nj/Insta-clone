@@ -55,13 +55,14 @@ def register(request):
                 'domain' : current_site,
                 'uid': urlsafe_base64_encode(force_bytes(user.pk))
             })
-
+            user.is_active=True
             user.save()
+            login(request, user)
             receipient_email = email
             send_mail = EmailMessage(message_subject, message ,to=[receipient_email])
-            send_mail.send()
-            messages.success(request, 'Account registered successfull. Please check [' + receipient_email + '] for the activation link!')
-            return redirect('register')
+            # send_mail.send()
+            messages.success(request, 'Account registered successfull!')
+            return redirect('home')
 
         else: 
             print("The form was not submitted!") 
