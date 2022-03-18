@@ -52,4 +52,7 @@ def post_comment(request, post_id):
     else: 
         print("invalid data")
     return render(request, 'instagram/index.html', {'user': user})
-
+    
+@login_required(login_url='login')
+def like_post(request):
+    pass
