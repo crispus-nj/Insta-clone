@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from accounts.models import UserAccount
-from .models import Comment, Post
+from .models import Comment, Post, Like
 
 @login_required(login_url='login')
 def home(request):
@@ -55,4 +55,23 @@ def post_comment(request, post_id):
     
 @login_required(login_url='login')
 def like_post(request):
-    pass
+    user = request.user
+
+    if request.method == 'POST':
+        post_id = request.POST.get('post')
+        post_obj = Post.objects.get(id = post_id)
+        if user in post_obj.liked.all():
+            post_obj.liked.remove(user)
+        else :
+            post_obj.liked.add(user)
+
+        like, created = Like.objects.get_or_create(user=user, post_id=post_id)
+
+        if created:
+            if like.value == 'like':
+                like.value == 'unlike'
+            else :
+                like.value == 'like'
+            
+        like.save()    
+    return redirect('posts')
