@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Comment, Post
+from .models import Comment, Post, Like
 from django.contrib.auth.admin import UserAdmin
 
 class StyledComment(UserAdmin):
@@ -19,3 +19,4 @@ class StylePost(UserAdmin):
 
 admin.site.register(Comment, StyledComment)
 admin.site.register(Post, StylePost)
+admin.site.register(Like)

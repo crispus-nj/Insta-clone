@@ -74,4 +74,4 @@ def like_post(request):
                 like.value == 'like'
             
         like.save()    
-    return redirect('posts')
+    return redirect('home')

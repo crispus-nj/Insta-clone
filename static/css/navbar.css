@@ -82,3 +82,8 @@
 .form__group input {
   background-color: transparent;
 }
+.button-dismiss {
+  background: none;
+  padding: 0px;
+  border: none;
+}

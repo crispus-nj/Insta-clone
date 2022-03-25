@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'includes/alerts.html'%}
+<style>
+    .button-dismiss {
+        background: none;
+        padding: 0px;
+        border: none;
+      }
+</style>
 <div class="row">
     <div class="col-md-3">
 
@@ -19,7 +26,20 @@
             <hr>
             <img src="{{post.image.url}}" class="card-img-top" alt="...">
             <div class="card-body">
-               5 <i class="far fa-heart"></i>
+                <span><form action="{% url 'like' %}" method="POST">
+                    {% csrf_token %}
+                   <span style="font-weight: bold;">{{post.liked.all.count}} </span> 
+                    <input type="hidden" name="post" id="post" value="{{post.id}}">
+                    {% if request.user not in post.liked.all %}
+                    <button type="submit" class="button-dismiss">
+                        <i class="fa fa-heart btn" style="font-size:20px"></i>
+                    </button>
+                    {% else %}
+                    <button type="submit" class="button-dismiss">
+                        <i class="fa fa-heart btn" style="font-size: 20px; color:red"></i>
+                    </button>
+                    {% endif %}
+                </form> </span> 
                 <i class="fa-solid fa-comment-dots"></i>
                 <p class="card-text">{{post.description}}</p>
             </div>
@@ -29,18 +49,20 @@
                     style="padding-left: 20px;padding-right: 15px;padding-top: 5px;">
                     <h5>COMMENTS</h5>
                     {% for comment in post.comments.all %}
-                    <div class="comments avatar-home">
-                        <div class="image-profile ms-2">
-                            <img src="{{comment.user.avatar.url}}" alt="profile picture" class="rounded-circle" style="height: 50px;width:50px;border-radius: 50%">
+                    <div class="comments avatar-home d-flex justify-content-between align-items-center">
+                        <div class="d-flex justify-content-start">
+                            <div class="image-profile ms-2">
+                                <img src="{{comment.user.avatar.url}}" alt="profile picture" class="rounded-circle" style="height: 30px;width:30px;border-radius: 50%">
+                            </div>
+                            <div class="username ms-2">
+                                <p>@:<a href="{% url 'profile' comment.user.id %}">{{comment.user.username}}</a></p>
+                            </div>
+                            <div class="post ms-1">
+                                <p>{{comment.body}}</p>
+                            </div>
                         </div>
-                        <div class="username ms-2">
-                            <p>@:<a href="{% url 'profile' comment.user.id %}">{{comment.user.username}}</a></p>
-                        </div>
-                        <div class="post ms-2">
-                            <p>{{comment.body}}</p>
-                        </div>
-                        <div class="time_posted ms-auto d-flex justify-content-center align-items-center">
-                            <small class="text-muted">Posted {{comment.date_posted|timesince}} ago</small>
+                        <div class="time_posted">
+                            <small class="text-muted"> Posted {{comment.date_posted|timesince}} ago</small>
                         </div>
                     </div>
 
