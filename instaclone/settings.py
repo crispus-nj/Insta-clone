@@ -38,7 +38,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://insta-clone-latest.onrender.com",
+    "insta-clone-latest.onrender.com",
     "localhost",
     "127.0.0.1"
 ]
