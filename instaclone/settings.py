@@ -12,13 +12,13 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-import django_heroku
+# import django_heroku
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
 cloudinary.config( 
-  cloud_name = "dnzwhglrm", 
+  cloud_name = "do5mwgvvi", 
   api_key = os.environ.get('api_key'), 
   api_secret = os.environ.get('api_secret') 
 )
@@ -91,7 +91,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'instaclone.wsgi.application'
+# WSGI_APPLICATION = 'instaclone.wsgi.application'
 
 
 # Database
@@ -169,4 +169,4 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
